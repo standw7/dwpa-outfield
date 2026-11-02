@@ -22,11 +22,12 @@ def calculate(events):
             [Catch probability * (distance traveled / opportunity time)]
 
     Win Probability is the win probability added by the play, from the
-    fielding team's side (home team fields in the top half).
+    fielding team's side (home team fields in the top half), as a fraction
+    of a win rather than percentage points.
     """
     effort = events.distance_ft / events.opp_time_s
     x = np.where(events.caught == 1, 1 - events.catch_prob, events.catch_prob) * effort
-    fielding_wpa = np.where(events.half_inning == "top", 1, -1) * events.home_wp_added
+    fielding_wpa = np.where(events.half_inning == "top", 1, -1) * events.home_wp_added / 100
     return pd.DataFrame({"play_id": events.play_id, "dwpa": fielding_wpa * x})
 
 
