@@ -2,3 +2,9 @@ data/
 .venv/
 __pycache__/
 .DS_Store
+/dataSources/
+/dataSources.local.xml
+/shelf/
+/workspace.xml
+/httpRequests/
+.idea
